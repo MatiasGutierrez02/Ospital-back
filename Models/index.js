@@ -1,4 +1,4 @@
-import Category from "./Category.js";
+
 import User from "./User.js";
 import Role from "./Role.js";
 import Paciente from "./Paciente.js"
@@ -11,4 +11,4 @@ User.belongsTo(Role, {
   as: "role",
 });
 
-export { Category, User, Role, Paciente, Login };
+export {  User, Role, Paciente, Login };

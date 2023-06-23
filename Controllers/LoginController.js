@@ -5,7 +5,7 @@ class LoginController {
   logIn = async (req, res, next) => {
     try {
       const { mail, contraseña } = req.body;
-      console.log(req.body)
+
       const result = await User.findOne({
         where: { mail },
       });
