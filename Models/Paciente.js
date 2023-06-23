@@ -65,7 +65,7 @@ Paciente.init(
   },
   {
     sequelize: connectionDb,
-    modelName: "Paciente",
+    modelName: "Pacientes",
     timestamps: false,
   },
 );

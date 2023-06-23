@@ -16,7 +16,7 @@ class PacientesController {
   getPacienteById = async (req, res, next) => {
     try {
       const { id } = req.params;
-      console.log(id)
+
       const result = await Paciente.findOne({
         where: {
           DNI:id
@@ -24,7 +24,6 @@ class PacientesController {
         attributes:[ "Nombre", "Apellido", "DNI"]
 
       });
-      console.log(result)
       if (!result) throw new Error("No se encontro el  Paciente");
       res.send({ success: true, message: "Paciente encontrado", result });
     } catch (error) {
@@ -45,8 +44,21 @@ class PacientesController {
   };
   updatePacienteById = async (req, res, next) => {
     try {
-      const result = Paciente;
-    } catch (error) {}
+      const { id } = req.params; // Corregir aquí, usar "id" en lugar de "userId"
+      const { DNI, Sexo, Mail, Codigo, Telefono, Nombre,FechaRegistro,UltimaConsulta,ObraSocial,NumeroAfiliado,Direccion,Localidad,ClienteActivo, Apellido } = req.body;
+      console.log(id)
+      console.log(req.body)
+      const result = await Paciente.update(
+        { DNI, Sexo, Mail, Codigo, Telefono, Nombre,FechaRegistro,UltimaConsulta,ObraSocial,NumeroAfiliado,Direccion,Localidad,ClienteActivo, Apellido},
+        { where: { DNI: id } }
+      );
+      console.log("result",result)
+      if (result[0] === 0) throw new Error("No se pudo actualizar el usuario");
+  
+      res.status(200).send({ success: true, message: "Paciente actualizado con éxito" });
+    } catch (error) {
+      res.status(400).send({ success: false, result: error.message });
+    }
   };
   deletePacienteById = async (req, res, next) => {
     try {

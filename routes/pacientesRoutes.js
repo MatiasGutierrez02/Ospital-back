@@ -8,11 +8,7 @@ const pacientesController= new PacientesController()
 pacientesRoutes.get("/", pacientesController.getAllPacientes);
 pacientesRoutes.get("/:id", pacientesController.getPacienteById);
 pacientesRoutes.post("/", pacientesController.createPaciente);
-pacientesRoutes.put("/:id", (req, res) => {
-  res.send("get all Pacientes");
-});
-pacientesRoutes.delete("/:id", (req, res) => {
-  res.send("get all Pacientes");
-});
+pacientesRoutes.put("/:id", pacientesController.updatePacienteById);
+pacientesRoutes.delete("/:id", pacientesController.deletePacienteById);
 
 export default pacientesRoutes;

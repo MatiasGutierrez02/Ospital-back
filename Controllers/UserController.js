@@ -23,8 +23,6 @@ class UserController {
   getUserById = async (req, res, next) => {
     try {
       const { id } = req.params;
-      debugger;
-      console.log(id)
       const result = await User.findOne({
         where: {
           id: id,
@@ -62,7 +60,6 @@ class UserController {
         { contraseña, mail, role },
         { where: { id: id } }
       );
-      console.log(result)
       if (result[0] === 0) throw new Error("No se pudo actualizar el usuario");
   
       res.status(200).send({ success: true, message: "Usuario actualizado con éxito" });
