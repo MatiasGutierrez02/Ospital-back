@@ -4,7 +4,7 @@ import Role from "./Role.js";
 import Paciente from "./Paciente.js"
 import Login from "./Login.js";
 Role.hasMany(User, {
-  foreignKey: "roleId",
+  foreignKey: "id",
 });
 User.belongsTo(Role, {
   foreignKey: "roleId",

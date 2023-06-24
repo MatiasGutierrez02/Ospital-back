@@ -46,13 +46,11 @@ class PacientesController {
     try {
       const { id } = req.params; // Corregir aquí, usar "id" en lugar de "userId"
       const { DNI, Sexo, Mail, Codigo, Telefono, Nombre,FechaRegistro,UltimaConsulta,ObraSocial,NumeroAfiliado,Direccion,Localidad,ClienteActivo, Apellido } = req.body;
-      console.log(id)
-      console.log(req.body)
       const result = await Paciente.update(
         { DNI, Sexo, Mail, Codigo, Telefono, Nombre,FechaRegistro,UltimaConsulta,ObraSocial,NumeroAfiliado,Direccion,Localidad,ClienteActivo, Apellido},
         { where: { DNI: id } }
       );
-      console.log("result",result)
+      
       if (result[0] === 0) throw new Error("No se pudo actualizar el usuario");
   
       res.status(200).send({ success: true, message: "Paciente actualizado con éxito" });
@@ -62,8 +60,16 @@ class PacientesController {
   };
   deletePacienteById = async (req, res, next) => {
     try {
-      const result = Paciente;
-    } catch (error) {}
+      const { id } = req.params;
+      
+      const result = await Paciente.destroy({ where: { DNI: id } });
+      
+      if (result === 0) throw new Error("No se pudo eliminar el Paciente");
+  
+      res.status(200).send({ success: true, message: "Paciente eliminado con éxito" });
+    } catch (error) {
+      res.status(400).send({ success: false, result: error.message });
+    }
   };
 }
 

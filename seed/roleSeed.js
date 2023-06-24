@@ -2,10 +2,23 @@ import { Role } from "../Models/index.js";
 
 const roleSeed = async () => {
   try {
-    await Role.bulkCreate([{ roleName: "admin" }, { roleName: "user" }]);
+    const adminRole = await Role.findOne({ where: { roleName: "admin" } });
+    if (!adminRole) {
+      await Role.create({ roleName: "admin" });
+
+      
+    }
+
+    const userRole = await Role.findOne({ where: { roleName: "user" } });
+    if (!userRole) {
+      await Role.create({ roleName: "user" });
+    }
+
+    console.log("Roles creados con éxito");
   } catch (error) {
-    console.log(error.message)
+    console.log(error.message);
   }
 };
 
-export default roleSeed
+export default roleSeed;
+
