@@ -1,11 +1,11 @@
 import { User, Role } from "../Models/index.js";
-
+import bcrypt from "bcrypt";
 class UserController {
   constructor() {}
   getAllUsers = async (req, res, next) => {
     try {
       const result = await User.findAll({
-        attributes: ["id", "nombre", "apellido", "email"],
+        attributes: ["id","mail"],
         include: [
           {
             model: Role,
@@ -27,7 +27,7 @@ class UserController {
         where: {
           id: id,
         },
-        attributes: ["id", "userName", "userLastName"],
+        attributes: ["id", "mail"],
       });
       if (!result) throw new Error("No se encontro el  usuario");
       res.send({ success: true, message: "Usuario encontrado", result });
@@ -37,11 +37,12 @@ class UserController {
   };
   createUser = async (req, res, next) => {
     try {
-      const { contraseña, mail, role } = req.body;
+      const { contraseña, mail, roleId } = req.body;
+      
       const result = await User.create({
         contraseña,
         mail,
-        role,
+        roleId,
       });
       if (!result.dataValues) throw new Error("No se pudo crear el usuario");
       res
@@ -61,8 +62,6 @@ class UserController {
         { where: { id: id } }
       );
       if (result[0] === 0) throw new Error("No se pudo actualizar el usuario");
-  
-      res.status(200).send({ success: true, message: "Usuario actualizado con éxito" });
     } catch (error) {
       res.status(400).send({ success: false, result: error.message });
     }
@@ -71,10 +70,10 @@ class UserController {
   
   deleteUserById = async (req, res, next) => {
     try {
-      const { userId } = req.params;
-  
-      const result = await User.destroy({ where: { id: userId } });
-      console.log(result)
+      const { id } = req.params;
+      
+      const result = await User.destroy({ where: { id: id } });
+      
       if (result === 0) throw new Error("No se pudo eliminar el usuario");
   
       res.status(200).send({ success: true, message: "Usuario eliminado con éxito" });
