@@ -60,7 +60,7 @@ Paciente.init(
       type: DT.STRING(50),
     },
     ClienteActivo: {
-      type: DT.INTEGER,
+      type: DT.BOOLEAN,
     },
   },
   {

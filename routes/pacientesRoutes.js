@@ -10,5 +10,6 @@ pacientesRoutes.get("/:id", pacientesController.getPacienteById);
 pacientesRoutes.post("/", pacientesController.createPaciente);
 pacientesRoutes.put("/:id", pacientesController.updatePacienteById);
 pacientesRoutes.delete("/:id", pacientesController.deletePacienteById);
-
+pacientesRoutes.put("/setToActivo/:id", pacientesController.setPacienteActivo)
+pacientesRoutes.put("/setToInactivo/:id", pacientesController.setPacienteInactivo)
 export default pacientesRoutes;
