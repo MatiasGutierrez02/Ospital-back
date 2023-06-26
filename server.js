@@ -4,6 +4,7 @@ import connectionDb from "./connectionDb/connectionDb.js";
 import "dotenv/config.js";
 import cors from "cors";
 import roleSeed from "./seed/roleSeed.js";
+import especilidadSeed from "./seed/especialidadSeed.js";
 const port = process.env.SERVER_PORT;
 const app = express();
 
@@ -24,4 +25,4 @@ await connectionDb
       console.log("server ok http://localhost:8080");
     });
   })
-  .then(roleSeed);
+  .then(() => {roleSeed(); especilidadSeed();});

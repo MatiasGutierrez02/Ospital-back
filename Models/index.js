@@ -2,7 +2,8 @@
 import User from "./User.js";
 import Role from "./Role.js";
 import Paciente from "./Paciente.js"
-import Login from "./Login.js";
+import Medico from "./Medico.js";
+import Especialidad from "./Especilidad.js"
 Role.hasMany(User, {
   foreignKey: "id",
 });
@@ -11,4 +12,11 @@ User.belongsTo(Role, {
   as: "role",
 });
 
-export {  User, Role, Paciente, Login };
+Especialidad.hasMany(Medico, {
+  foreignKey: "id",
+});
+Medico.belongsTo(Especialidad, {
+  foreignKey: "especialidadId",
+  as: "especialidad",
+});
+export {  User, Role, Paciente, Medico, Especialidad };

@@ -13,7 +13,7 @@ class PacientesController {
       res.status(400).send({ success: false, result: error.message });
     }
   };
-  getPacienteById = async (req, res, next) => {
+  getPacienteByDNI = async (req, res, next) => {
     try {
       const { id } = req.params;
 
@@ -42,7 +42,7 @@ class PacientesController {
       res.status(400).send({ success: false, result: error.message });
     }
   };
-  updatePacienteById = async (req, res, next) => {
+  updatePacienteByDNI = async (req, res, next) => {
     try {
       const { id } = req.params; // Corregir aquí, usar "id" en lugar de "userId"
       const { DNI, Sexo, Mail, Codigo, Telefono, Nombre,FechaRegistro,UltimaConsulta,ObraSocial,NumeroAfiliado,Direccion,Localidad,ClienteActivo, Apellido } = req.body;
@@ -58,7 +58,7 @@ class PacientesController {
       res.status(400).send({ success: false, result: error.message });
     }
   };
-  deletePacienteById = async (req, res, next) => {
+  deletePacienteByDNI = async (req, res, next) => {
     try {
       const { id } = req.params;
       
