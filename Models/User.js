@@ -4,7 +4,6 @@ import connectionDb from "../connectionDb/connectionDb.js";
 
 class User extends Model {
   async validatePassword(password, hash) {
-    
     return await bcrypt.compare(password, hash);
   }
 }

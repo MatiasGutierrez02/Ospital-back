@@ -22,9 +22,7 @@ class LoginController {
       res.status(400).send({ success: false, result: error.message });
     }
   };
-  logOut = async (req, res, next) => {
-    try {} catch(err){}
-  }
+
 }
 
 export default LoginController;
