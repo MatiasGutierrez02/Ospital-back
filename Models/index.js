@@ -5,7 +5,7 @@ import Paciente from "./Paciente.js"
 import Medico from "./Medico.js";
 import Especialidad from "./Especilidad.js"
 Role.hasMany(User, {
-  foreignKey: "id",
+  foreignKey: "roleid",
 });
 User.belongsTo(Role, {
   foreignKey: "roleId",
@@ -13,7 +13,7 @@ User.belongsTo(Role, {
 });
 
 Especialidad.hasMany(Medico, {
-  foreignKey: "id",
+  foreignKey: "especialidadId",
 });
 Medico.belongsTo(Especialidad, {
   foreignKey: "especialidadId",
